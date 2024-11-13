@@ -4555,6 +4555,7 @@ def test_variables_jinja():
         variables={"test_var_a": "test_value", "test_var_d": 1, "test_var_unused": 2},
         jinja_macros=jinja_macros,
     )
+    print(model.python_env)
     assert model.python_env[c.SQLMESH_VARS] == Executable.value(
         {"test_var_a": "test_value", "test_var_d": 1}
     )
@@ -5010,7 +5011,10 @@ def test_macro_references_in_audits():
         model_defaults=ModelDefaultsConfig(dialect="duckdb", audits=["assert_not_zero"])
     )
     model = load_sql_based_model(
-        model_expression, audits=audits, default_audits=config.model_defaults.audits
+        model_expression,
+        audits=audits,
+        default_audits=config.model_defaults.audits,
+        audit_definitions=audits,
     )
 
     assert len(model.audits) == 2
