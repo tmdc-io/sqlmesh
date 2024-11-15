@@ -1,4 +1,20 @@
 declare module '@uidotdev/usehooks'
+declare module '~/utils/tbk-components' {
+  export const Badge: any
+  export const SourceList: any
+  export const SourceListItem: any
+  export const SourceListSection: any
+  export const ModelName: any
+  export const ResizeObserver: any
+}
+declare module '~/utils/additional-components' {
+  export const TBKBadge: any
+  export const TBKSourceList: any
+  export const TBKSourceListItem: any
+  export const TBKSourceListSection: any
+  export const TBKModelName: any
+  export const TBKResizeObserver: any
+}
 
 type Subset<T, S extends T> = S
 type Path = string
