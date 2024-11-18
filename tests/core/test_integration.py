@@ -1893,7 +1893,6 @@ def change_model_kind(context: Context, kind: ModelKindName):
         context.upsert_model(
             "sushi.items",
             partitioned_by=[],
-            audits=[],
         )
     context.upsert_model("sushi.items", kind=model_kind_type_from_name(kind)())  # type: ignore
 

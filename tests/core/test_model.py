@@ -4555,7 +4555,6 @@ def test_variables_jinja():
         variables={"test_var_a": "test_value", "test_var_d": 1, "test_var_unused": 2},
         jinja_macros=jinja_macros,
     )
-    print(model.python_env)
     assert model.python_env[c.SQLMESH_VARS] == Executable.value(
         {"test_var_a": "test_value", "test_var_d": 1}
     )
@@ -4678,6 +4677,8 @@ def test_columns_python_sql_model() -> None:
 
 
 def test_named_variables_python_model(mocker: MockerFixture) -> None:
+    model.set_registry({})  # type: ignore
+
     @model(
         "test_named_variables_python_model",
         kind="full",
@@ -4711,6 +4712,8 @@ def test_named_variables_python_model(mocker: MockerFixture) -> None:
 
 
 def test_named_variables_kw_only_python_model(mocker: MockerFixture) -> None:
+    model.set_registry({})  # type: ignore
+
     @model(
         "test_named_variables_python_model",
         kind="full",
@@ -5737,7 +5740,7 @@ materialized TRUE
     [True, False],
 )
 def test_macro_func_hash(metadata_only):
-    macro.set_registry({})
+    macro.set_registry({})  # type: ignore
 
     @macro(metadata_only=metadata_only)
     def noop(evaluator) -> None:
